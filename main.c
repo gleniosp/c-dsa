@@ -3,13 +3,13 @@
 #include <string.h>
 
 typedef struct node {
-    char data[40];
+    int data;
     struct node *next_node;
 } __attribute__((packed)) node_s;
 
 node_s *__head = NULL;
 
-int init(char *data) {
+int init(int data) {
     if (__head) {
         printf("List already initialised.\n");
         return -1;
@@ -28,25 +28,17 @@ int init(char *data) {
     // to point to.
     __head->next_node = NULL;
 
-    /* Copy over the given data and save.
-    Just to be aware of: at this point, if data has more than 40 chars,
-    this code will propably produce some errors at runtime.
-    It's also missing a check to see if memcpy failed or not. */
-    memcpy(__head->data, data, strlen(data));
+    /* Copy over the given data and save. */
+    __head->data = data;
 
     return 0;
 }
 
-int add (char *data) {
-    if (!data) {
-        printf("Invalid data!\n");
-        return -1;
-    }
-
+int add(int data) {
     node_s *n = malloc(sizeof(node_s));
     if (!n) {
         printf("Memory allocation failed!\n");
-        return -2;
+        return -1;
     }
 
     /*
@@ -60,23 +52,58 @@ int add (char *data) {
         time efficient in terms of writing to the linked list.
     */
     n->next_node = __head;
-    memcpy(n->data, data, strlen(data));
+    n->data = data;
 
     __head = n;
 
     return 0;
 }
 
+int add_at_the_end(int data) {
+    node_s *cur;
+
+    node_s *n = malloc(sizeof(node_s));
+    if (!n) {
+        printf("Memory allocation failed!\n");
+        return -1;
+    }
+
+    n->data = data;
+    n->next_node = NULL;
+
+    /*
+        Different from the `add` function above, here we're doing
+        the opposite. We're not adding the next node to the beginning
+        of the list, but to the end of it. So, we need to go through
+        all the elements to find the current end node. The time
+        complexity here is then O(n) instead of O(1) (for the `add`
+        function).
+    */
+    for (cur = __head; cur->next_node != NULL; cur = cur->next_node) {
+        /*
+            Nothing to do here, just heading to the end of the list,
+            so `cur` points to it.
+        */
+    }
+
+    cur->next_node = n;
+
+    return 0;
+}
+
 void traverse(void) {
     for (node_s *cursor = __head; cursor != NULL; cursor = cursor->next_node) {
-        printf("%s\n", cursor->data);
+        printf("%d\n", cursor->data);
     }
 }
 
 int main() {
-    init("hello");
-    add("world");
-    add("from linked list");
+    init(101);
+    // add(102);
+    // add(203);
+    add_at_the_end(12);
+    add_at_the_end(13);
+    add_at_the_end(24);
 
     traverse();
     return 0;
