@@ -100,6 +100,19 @@ int add_at_the_end(int data)
     return 0;
 }
 
+int exists(int data)
+{
+    for (node_s *cursor = __head; cursor != NULL; cursor = cursor->next_node)
+    {
+        if (cursor->data == data)
+        {
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
 void traverse(void)
 {
     for (node_s *cursor = __head; cursor != NULL; cursor = cursor->next_node)
@@ -111,12 +124,21 @@ void traverse(void)
 int main()
 {
     init(101);
-    // add(102);
-    // add(203);
-    add_at_the_end(12);
-    add_at_the_end(13);
-    add_at_the_end(24);
+
+    for (int i = 0; i < 10; i++)
+    {
+        add(i);
+    }
+
+    for (int i = 0; i < 10; i++)
+    {
+        add_at_the_end(i);
+    }
 
     traverse();
+
+    printf("102: %d\n", exists(102));
+    printf("101: %d\n", exists(101));
+
     return 0;
 }
