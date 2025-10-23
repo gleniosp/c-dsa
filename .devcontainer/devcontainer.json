@@ -18,7 +18,10 @@
         "editor.rulers": [120],
         "terminal.integrated.sendKeybindingsToShell": true,
         "extensions.ignoreRecommendations": true,
-        "remote.autoForwardPorts": false
+        "remote.autoForwardPorts": false,
+        "[c]": {
+          "editor.defaultFormatter": "ms-vscode.cpptools"
+        }
       },
       "extensions": ["ms-vscode.cpptools"]
     }

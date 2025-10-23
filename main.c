@@ -2,15 +2,18 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct node {
+typedef struct node
+{
     int data;
     struct node *next_node;
 } __attribute__((packed)) node_s;
 
 node_s *__head = NULL;
 
-int init(int data) {
-    if (__head) {
+int init(int data)
+{
+    if (__head)
+    {
         printf("List already initialised.\n");
         return -1;
     }
@@ -19,7 +22,8 @@ int init(int data) {
     __head = malloc(sizeof(node_s));
     // If malloc fails, it'll return NULL, which will make this if condition
     // to be true as NULL will be considered as a 0 for the validation
-    if (!__head) {
+    if (!__head)
+    {
         printf("Memory allocation failed!\n");
         return -1;
     }
@@ -34,9 +38,11 @@ int init(int data) {
     return 0;
 }
 
-int add(int data) {
+int add(int data)
+{
     node_s *n = malloc(sizeof(node_s));
-    if (!n) {
+    if (!n)
+    {
         printf("Memory allocation failed!\n");
         return -1;
     }
@@ -59,11 +65,13 @@ int add(int data) {
     return 0;
 }
 
-int add_at_the_end(int data) {
+int add_at_the_end(int data)
+{
     node_s *cur;
 
     node_s *n = malloc(sizeof(node_s));
-    if (!n) {
+    if (!n)
+    {
         printf("Memory allocation failed!\n");
         return -1;
     }
@@ -79,7 +87,8 @@ int add_at_the_end(int data) {
         complexity here is then O(n) instead of O(1) (for the `add`
         function).
     */
-    for (cur = __head; cur->next_node != NULL; cur = cur->next_node) {
+    for (cur = __head; cur->next_node != NULL; cur = cur->next_node)
+    {
         /*
             Nothing to do here, just heading to the end of the list,
             so `cur` points to it.
@@ -91,13 +100,16 @@ int add_at_the_end(int data) {
     return 0;
 }
 
-void traverse(void) {
-    for (node_s *cursor = __head; cursor != NULL; cursor = cursor->next_node) {
+void traverse(void)
+{
+    for (node_s *cursor = __head; cursor != NULL; cursor = cursor->next_node)
+    {
         printf("%d\n", cursor->data);
     }
 }
 
-int main() {
+int main()
+{
     init(101);
     // add(102);
     // add(203);
