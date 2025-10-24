@@ -117,8 +117,30 @@ void traverse(void)
 {
     for (node_s *cursor = __head; cursor != NULL; cursor = cursor->next_node)
     {
-        printf("%d\n", cursor->data);
+        printf("%d ", cursor->data);
     }
+    printf("\n");
+}
+
+int delete(int data)
+{
+    // Note that this function only deletes the first occurrence
+    // of a data. The function can be modified later to delete
+    // all occurrences.
+    for (
+        node_s *p = NULL, *c = __head;
+        c != NULL;
+        p = c, c = c->next_node)
+    {
+        if (c->data == data)
+        {
+            p->next_node = c->next_node;
+            free(c);
+            printf("deleted: %d\n", data);
+            return 1;
+        }
+    }
+    return 0;
 }
 
 int main()
@@ -139,6 +161,12 @@ int main()
 
     printf("102: %d\n", exists(102));
     printf("101: %d\n", exists(101));
+
+    delete(5);
+    traverse();
+
+    delete(101);
+    traverse();
 
     return 0;
 }
