@@ -143,6 +143,38 @@ int delete(int data)
     return 0;
 }
 
+int insert(int key, int data)
+{
+    node_s *k, *n;
+
+    for (k = __head; k != NULL; k = k->next_node)
+    {
+        if (k->data == key)
+        {
+            break;
+        }
+    }
+
+    if (!k)
+    {
+        printf("Insertion failed, key not found!\n");
+        return 0;
+    }
+
+    n = malloc(sizeof(node_s));
+    if (!n)
+    {
+        printf("Insertion failed, could not allocate memory!\n");
+        return -1;
+    }
+    n->data = data;
+    n->next_node = k->next_node;
+
+    k->next_node = n;
+
+    return 1;
+}
+
 int main()
 {
     init(101);
@@ -166,6 +198,15 @@ int main()
     traverse();
 
     delete(101);
+    traverse();
+
+    insert(0, 101);
+    traverse();
+    insert(101, 1024);
+    traverse();
+
+    // should print key not found
+    insert(1023, 4098);
     traverse();
 
     return 0;
