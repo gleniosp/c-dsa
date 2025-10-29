@@ -1,7 +1,7 @@
 /*
 If you move the sll.c file out of the sll-lib folder and put it
 at the same level as the ssl.h file, you can simple compile and
-run this code with: `gcc linked_list.c sll.c && ./a.out`.
+run this code with: `gcc main_linked_list.c sll.c && ./a.out`.
 However, with the sll.c file inside the sll-lib folder, we can
 compile sll.c to a static library and share this library and the
 header file with other people without sharing the actual
@@ -11,7 +11,7 @@ implementation within sll.c. For this, we do:
 - `ar -rc libsll.a sll.o`
 - `mv libsll.a ../`
 - `cd ..`
-- `gcc linked_list.c libsll.a && ./a.out`
+- `gcc main_linked_list.c libsll.a && ./a.out`
 
 I left both approaches available, so you can choose which one to use.
 */
