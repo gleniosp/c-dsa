@@ -16,6 +16,7 @@ typedef struct node
 } __attribute__((packed)) node_s;
 
 static node_s *__head = NULL;
+static node_s *__tail = NULL;
 
 int init(int data)
 {
@@ -42,13 +43,13 @@ int init(int data)
     /* Copy over the given data and save. */
     __head->data = data;
 
+    // tail and head point to the same location
+    __tail = __head;
     return 0;
 }
 
 int add(int data)
 {
-    node_s *cur;
-
     node_s *n = malloc(sizeof(node_s));
     if (!n)
     {
@@ -59,15 +60,9 @@ int add(int data)
     n->data = data;
     n->next_node = NULL;
 
-    for (cur = __head; cur->next_node != NULL; cur = cur->next_node)
-    {
-        /*
-            Nothing to do here, just heading to the end of the list,
-            so `cur` points to it.
-        */
-    }
+    __tail->next_node = n;
 
-    cur->next_node = n;
+    __tail = n;
 
     return 0;
 }
