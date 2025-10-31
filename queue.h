@@ -5,6 +5,8 @@ int init(int data);
 
 int add(int data);
 
+int fetch();
+
 int search(int data);
 
 void traverse(void);

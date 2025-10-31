@@ -12,7 +12,20 @@ int main()
         add(i);
     }
 
+    fetch();
     traverse();
+
+    fetch();
+    traverse();
+
+    fetch();
+    fetch();
+    traverse();
+
+    for (int j = 0; j < 10; j++)
+    {
+        printf("%d\n", fetch());
+    }
 
     return 0;
 }

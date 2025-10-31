@@ -67,6 +67,26 @@ int add(int data)
     return 0;
 }
 
+int fetch(void)
+{
+    int first;
+    node_s *to_be_deleted;
+
+    if (!__head)
+    {
+        printf("Empty queue\n");
+        return -1;
+    }
+
+    first = __head->data;
+
+    to_be_deleted = __head;
+    __head = __head->next_node;
+    free(to_be_deleted);
+
+    return first;
+}
+
 void traverse(void)
 {
     for (node_s *cursor = __head; cursor != NULL; cursor = cursor->next_node)
