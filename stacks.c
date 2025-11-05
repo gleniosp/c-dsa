@@ -41,3 +41,32 @@ void print_stack()
         printf("--\n");
     }
 }
+
+void peek()
+{
+    if (__top)
+    {
+        printf("peek: %d\n", __top->data);
+    }
+    else
+    {
+        printf("Stack is empty.\n");
+    }
+}
+
+void pop()
+{
+    if (__top)
+    {
+        printf("pop: %d\n", __top->data);
+        node_s *victim = __top;
+
+        __top = __top->next_node;
+
+        free(victim);
+    }
+    else
+    {
+        printf("Stack is empty.\n");
+    }
+}
