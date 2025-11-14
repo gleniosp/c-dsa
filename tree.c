@@ -87,3 +87,80 @@ void add(char data)
         }
     }
 }
+
+/**
+    Preorder Traversal:
+        Visit the root.
+        Visit the left-subtree.
+        Visit the right-subtree.
+
+    Inorder Traversal:
+        Visit the left-subtree.
+        Visit the root.
+        Visit the right-subtree.
+
+    Postorder Traversal:
+        Visit the right-subtree.
+        Visit the left-subtree.
+        Visit the root.
+*/
+
+void preorder(node_s *node)
+{
+    if (node == NULL)
+    {
+        return;
+    }
+
+    printf("%c ", node->data);
+    preorder(node->l_child);
+    preorder(node->r_child);
+    return;
+}
+
+void print_preorder()
+{
+    printf("Preorder: ");
+    preorder(__root);
+    printf("\n");
+}
+
+void inorder(node_s *node)
+{
+    if (node == NULL)
+    {
+        return;
+    }
+
+    inorder(node->l_child);
+    printf("%c ", node->data);
+    inorder(node->r_child);
+    return;
+}
+
+void print_inorder()
+{
+    printf("Inorder: ");
+    inorder(__root);
+    printf("\n");
+}
+
+void postorder(node_s *node)
+{
+    if (node == NULL)
+    {
+        return;
+    }
+
+    postorder(node->r_child);
+    postorder(node->l_child);
+    printf("%c ", node->data);
+    return;
+}
+
+void print_postorder()
+{
+    printf("Postorder: ");
+    postorder(__root);
+    printf("\n");
+}

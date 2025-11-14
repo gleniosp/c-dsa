@@ -6,6 +6,8 @@
 
 int main()
 {
+    // during the additions the nodes will also be printed,
+    // which will essentially print Breadth-first search (BFS).
     add('A');
     add('B');
     add('C');
@@ -14,6 +16,10 @@ int main()
     add('F');
     add('G');
     add('H');
+
+    print_preorder();
+    print_inorder();
+    print_postorder();
 
     // We should also free all the allocated memory for the tree
     // before ending the program.
